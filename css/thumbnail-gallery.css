@@ -5,15 +5,14 @@
  */
 
 body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+    padding-top: 70px;
+    /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
 }
 
 .thumb {
     margin-bottom: 45px;
-	
-	max-width: 250px;
-	max-height: 250px;
-	
+    max-width: 200px;
+    max-height: 200px;
 }
 
 footer {
@@ -21,7 +20,6 @@ footer {
 }
 
 .img-responsive {
-    max-width: 250px;
-	max-height: 250px;
-	
+    max-width: 200px;
+    max-height: 200px;
 }
