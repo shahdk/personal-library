@@ -3987,7 +3987,8 @@ textarea.input-group-sm>.input-group-btn>.btn {
 .input-group-btn:first-child>.dropdown-toggle,
 .input-group-btn:last-child>.btn:not(:last-child):not(.dropdown-toggle) {
     border-top-right-radius: 0;
-    border-bottom-right-radius: 0
+    border-bottom-right-radius: 0;
+    background-color:  #ECDFBD;
 }
 
 .input-group-addon:first-child {
@@ -4000,7 +4001,8 @@ textarea.input-group-sm>.input-group-btn>.btn {
 .input-group-btn:last-child>.dropdown-toggle,
 .input-group-btn:first-child>.btn:not(:first-child) {
     border-bottom-left-radius: 0;
-    border-top-left-radius: 0
+    border-top-left-radius: 0;
+    background-color:  #ECDFBD;
 }
 
 .input-group-addon:last-child {
