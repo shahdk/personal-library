@@ -20,8 +20,25 @@
 ---
 
 #####Screenshots of the current website UI:
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
+![alt text](https://raw.githubusercontent.com/shahdk/personal-library/master/screenshots/homePage.png "Home page")
 
 ---
+![alt text](https://raw.githubusercontent.com/shahdk/personal-library/master/screenshots/hoverOverBookCover.png "When you over a book cover")
 
 ---
+![alt text](https://raw.githubusercontent.com/shahdk/personal-library/master/screenshots/bookInfo.png "When you click on a book cover")
+
+---
+![alt text](https://raw.githubusercontent.com/shahdk/personal-library/master/screenshots/editableInput.png "When you hover over an input")
+
+---
+![alt text](https://raw.githubusercontent.com/shahdk/personal-library/master/screenshots/editingInput.png "Click on the input to edit it")
+
+---
+![alt text](https://raw.githubusercontent.com/shahdk/personal-library/master/screenshots/sortByMenu.png "Clicking on SortBy dropdown menu")
+
+---
+![alt text](https://raw.githubusercontent.com/shahdk/personal-library/master/screenshots/currentlyReading.png "Clicking on CurrentlyReading dropdown menu")
+
+
