@@ -21,42 +21,41 @@
         echo "              <table>";
         echo "                  <tr>";
         echo "                      <td>ISBN: </td>";
-        echo "                      <td>9876543211234</td>";
+        echo "                      <td><input typw=\"text\" class=\"editableInput\" id=\"isbnInput".$i."\" value=\"9876543211234\"></input></td>";
         echo "                  </tr>";
         echo "                  <tr>";
         echo "                      <td>Published In: </td>";
-        echo "                      <td>2010</td>";
+        echo "                      <td><input typw=\"text\" class=\"editableInput\" id=\"publishedYearInput".$i."\" value=\"2010\"></input></td>";
         echo "                  </tr>";
         echo "                  <tr>";
-        echo "                      <td>Pages: </td>";
-        echo "                      <td>150/350</td>";
+        echo "                      <td>Total Pages: </td>";
+        echo "                      <td><input typw=\"text\" class=\"editableInput\" id=\"totalPagesInput".$i."\" value=\"350\"></input></td>";
+        echo "                  </tr>";
+        echo "                  <tr>";
+        echo "                      <td>Bookmarked Page: </td>";
+        echo "                      <td><input typw=\"text\" class=\"editableInput\" id=\"bookmarkPageInput".$i."\" value=\"150\"></input></td>";
         echo "                  </tr>";
         echo "                  <tr>";
         echo "                      <td>Location: </td>";
-        echo "                      <td>Upper shelf in bedroom</td>";
+        echo "                      <td><input typw=\"text\" class=\"editableInput\" id=\"locationInput".$i."\" value=\"Upper shelf in bedroom\"></input></td>";
         echo "                  </tr>";
         echo "                  <tr>";
         echo "                      <td>Rating: </td>";
         echo "                      <td>";
         echo "                          <div class=\"rating\">";
-        echo "                              <input type=\"radio\" id=\"star5\" name=\"rating\" value=\"5\" /><label for=\"star5\" title=\"Rocks!\">5 stars</label>";
-        
-        echo "                              <input type=\"radio\" id=\"star4\" name=\"rating\" value=\"4\" /><label for=\"star4\" title=\"Pretty good\">4 stars</label>";
-        
-        echo "                              <input type=\"radio\" id=\"star3\" name=\"rating\" value=\"3\" /><label for=\"star3\" title=\"Meh\">3 stars</label>";
-        
-        echo "                              <input type=\"radio\" id=\"star2\" name=\"rating\" value=\"2\" /><label for=\"star2\" title=\"Kinda bad\">2 stars</label>";
-        
-        echo "                              <input type=\"radio\" id=\"star1\" name=\"rating\" value=\"1\" /><label for=\"star1\" title=\"Sucks big time\">1 star</label>";
-        
         echo "                          </div>";
         echo "                      </td>";
         echo "                  </tr>";
         echo "              </table>";
         echo "          </div>";
-        
+        echo "          <div class=\"progress\">";
+        echo "              <div class=\"progress-bar\" id=\"progress-bar-".$i."\" role=\"progressbar\" aria-valuenow=\"80\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width:80%\">";
+        echo "                  <p>150 pages read</p>";
+        echo "              </div>";
+        echo "          </div>";
         echo "          <div class=\"link-box\">";
-        echo "              <input type=\"submit\" value=\"Delete Book\" class=\"flat-btn\" />";
+        echo "              <input type=\"submit\" value=\"Save Changes\" class=\"save-flat-btn\" />";
+        echo "              <input type=\"submit\" value=\"Delete Book\" class=\"delete-flat-btn\" />";
         echo "          </div>";
         echo "      </div>";
         echo "  </div>";

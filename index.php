@@ -18,13 +18,9 @@
     <link href="css/styles.css" rel="stylesheet">
     <link href="css/thumbnail-gallery.css" rel="stylesheet">
     <link href='font-awesome/fertigopro/stylesheet.css' rel='stylesheet' type='text/css'>
-    
-    
-    
 </head>
 
 <body>
-
     <!-- Navigation -->
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
@@ -111,44 +107,41 @@
         <div class="row">
 
             <p></p>
-
-
-
             <hr />
 
             <?php include 'php/getfiles.php'; ?>
             <?php include 'php/createmodal.php'; ?>
-           
-            </div>
-
-             <div class="bottom-bar-wrapper">
-                <p>
-                    <div class="bottom-bar" />
-                </p>
-            </div>
-            <!-- End Modal -->
-
-            <hr>
-
-            <!-- Footer -->
-            <footer>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p>Copyright &copy; Dharmin Shah 2014</p>
-                    </div>
-                </div>
-            </footer>
 
         </div>
-        <!-- /.container -->
 
-        <!-- jQuery -->
-        <script src="js/jquery.js"></script>
+        <div class="bottom-bar-wrapper">
+            <p>
+            <div class="bottom-bar"> </div>
+            </p>
+        </div>
+        <!-- End Modal -->
 
-        <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
-    
+        <hr />
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Dharmin Shah 2014</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.raty.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-tooltip.js"></script>
+    <script src="js/custom.js"></script>
 </body>
 
 </html>

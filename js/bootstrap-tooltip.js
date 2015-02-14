@@ -130,7 +130,7 @@
  
         switch (inside ? placement.split(' ')[1] : placement) {
           case 'bottom':
-            tp = {top: pos.top + pos.height, left: pos.left + pos.width / 2 - actualWidth / 2}
+            tp = {top: pos.top + pos.height + 13, left: pos.left + pos.width / 2 - actualWidth / 2}
             break
           case 'top':
             tp = {top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2}
@@ -266,9 +266,9 @@
  
   $.fn.tooltip.defaults = {
     animation: true
-  , placement: 'top'
+  , placement: 'bottom'
   , selector: false
-  , template: '<div class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'
+  , template: '<div class="tooltip"><div class="tooltip-inner"></div></div>'
   , trigger: 'hover'
   , title: ''
   , delay: 0
