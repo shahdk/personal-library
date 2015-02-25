@@ -49,7 +49,13 @@
         echo "              </table>";
         echo "          </div>";
         echo "          <div class=\"progress\">";
-        echo "              <div class=\"progress-bar\" id=\"progress-bar-".$i."\" role=\"progressbar\" aria-valuenow=\"80\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width:80%\">";
+        
+        $val = 45;
+        if ($i % 2 == 0){
+            $val = 100;
+        }
+        
+        echo "              <div class=\"progress-bar\" id=\"progress-bar-".$i."\" role=\"progressbar\" aria-valuenow=\"".$val."\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width:".$val."%\">";
         echo "                  <p>150 pages read</p>";
         echo "              </div>";
         echo "          </div>";

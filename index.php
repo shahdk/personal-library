@@ -95,7 +95,7 @@
 
                     </ul>
                 </li>
-                <li class="navbar-btn">Add Book</li>
+                <li class="navbar-btn" data-toggle="modal" data-target="#addBookModal">Add Book</li>
                 <li class="navbar-btn">Wish List</li>
             </ul>
         </div>
@@ -111,6 +111,7 @@
 
             <?php include 'php/getfiles.php'; ?>
             <?php include 'php/createmodal.php'; ?>
+            <?php include 'php/create-add-book-modal.php'; ?>
 
         </div>
 
