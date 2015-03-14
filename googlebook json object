@@ -1,0 +1,76 @@
+{
+    "kind": "books#volumes",
+    "totalItems": 1,
+    "items": [
+        {
+            "kind": "books#volume",
+            "id": "qahpAgAAQBAJ",
+            "etag": "MVNm2i8DeIc",
+            "selfLink": "https://www.googleapis.com/books/v1/volumes/qahpAgAAQBAJ",
+            "volumeInfo": {
+                "title": "Don't Make Me Think, Revisited",
+                "subtitle": "A Common Sense Approach to Web Usability",
+                "authors": [
+                    "Steve Krug"
+                ],
+                "publisher": "Pearson Education",
+                "publishedDate": "2014",
+                "description": "Offers observations and solutions to fundamental Web design problems, as well as a new chapter about mobile Web design.",
+                "industryIdentifiers": [
+                    {
+                        "type": "ISBN_13",
+                        "identifier": "9780321965516"
+                    },
+                    {
+                        "type": "ISBN_10",
+                        "identifier": "0321965515"
+                    }
+                ],
+                "readingModes": {
+                    "text": false,
+                    "image": true
+                },
+                "pageCount": 200,
+                "printType": "BOOK",
+                "categories": [
+                    "Computers"
+                ],
+                "averageRating": 4,
+                "ratingsCount": 63,
+                "contentVersion": "0.1.0.0.preview.1",
+                "imageLinks": {
+                    "smallThumbnail": "http://books.google.com/books/content?id=qahpAgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+                    "thumbnail": "http://books.google.com/books/content?id=qahpAgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+                },
+                "language": "en",
+                "previewLink": "http://books.google.com/books?id=qahpAgAAQBAJ&printsec=frontcover&dq=isbn:9780321965516&hl=&cd=1&source=gbs_api",
+                "infoLink": "http://books.google.com/books?id=qahpAgAAQBAJ&dq=isbn:9780321965516&hl=&source=gbs_api",
+                "canonicalVolumeLink": "http://books.google.com/books/about/Don_t_Make_Me_Think_Revisited.html?hl=&id=qahpAgAAQBAJ"
+            },
+            "saleInfo": {
+                "country": "US",
+                "saleability": "NOT_FOR_SALE",
+                "isEbook": false
+            },
+            "accessInfo": {
+                "country": "US",
+                "viewability": "PARTIAL",
+                "embeddable": true,
+                "publicDomain": false,
+                "textToSpeechPermission": "ALLOWED_FOR_ACCESSIBILITY",
+                "epub": {
+                    "isAvailable": false
+                },
+                "pdf": {
+                    "isAvailable": false
+                },
+                "webReaderLink": "http://books.google.com/books/reader?id=qahpAgAAQBAJ&hl=&printsec=frontcover&output=reader&source=gbs_api",
+                "accessViewStatus": "SAMPLE",
+                "quoteSharingAllowed": false
+            },
+            "searchInfo": {
+                "textSnippet": "Offers observations and solutions to fundamental Web design problems, as well as a new chapter about mobile Web design."
+            }
+        }
+    ]
+}
