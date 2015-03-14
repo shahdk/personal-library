@@ -31,8 +31,6 @@ $(document).ready(function () {
         var thumbnailId = thumbnails[i].id;
         var progressBarId = progressBars[i].id;
         
-        alert(thumbnailId + " -- " + progressBarId);
-        
         var progressBar = document.getElementById(progressBarId);
         var thumbnail = document.getElementById(thumbnailId);
         
@@ -41,7 +39,6 @@ $(document).ready(function () {
         var ratio = percent / spread;
         var red, green;
         
-        alert(ratio);
         if (ratio < 0.25) {
             red = 1;
             green = 4 * ratio;
@@ -58,13 +55,5 @@ $(document).ready(function () {
 
         progressBar.style.backgroundColor = "rgb(" + red * 255 + "," + green * 255 + ",0)";
         progressBar.style.color = "#000";
-        
-       //
-        
-        
-        
-        
-        
-        thumbnail.style.backgroundColor = "rgb(" + red * 255 + "," + green * 255 + ",0)";
     }
 });

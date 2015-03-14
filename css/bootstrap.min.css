@@ -5,6 +5,11 @@
  */
 /*! normalize.css v2.1.3 | MIT License | git.io/normalize */
 
+@font-face {
+font-family: Hagin;
+src: url("fonts/Hagin_Caps_Medium.otf") format("opentype");
+}
+
 article,
 aside,
 details,
@@ -4800,13 +4805,13 @@ navbar-nav.pull-right>li>.dropdown-menu,
 .navbar-inverse .navbar-text {
     color: #FFF;
     font-weight: bold;
-    font-family: 'fertigo_proregular', sans-serif;
+    font-family: 'Hagin','fertigo_proregular', sans-serif;
 }
 
 .navbar-inverse .navbar-nav>li>a {
     color: #FFF;
     font-weight: bold;
-    font-family: 'fertigo_proregular', sans-serif;
+    font-family: 'Hagin', 'fertigo_proregular', sans-serif;
 }
 
 .navbar-inverse .navbar-nav>li>a:hover,
