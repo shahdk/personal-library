@@ -21,6 +21,7 @@
     <script src="js/jquery.js"></script>
     <script type="text/javascript" src="js/isbn.js"></script>
     <script type="text/javascript" src="js/isbn-groups.js"></script>
+    <script src="js/jquery.raty.js"></script>
 </head>
 
 <body>
@@ -117,6 +118,7 @@
             <script type="text/javascript">
                 createAddBookModal();
                 createBookDetailModal();
+                $('.rating').raty();
             </script>
 
         </div>
@@ -138,8 +140,7 @@
         </footer>
 
     </div>
-    <script src="js/jquery.raty.js"></script>
-    <script type="text/javascript">$('.rating').raty();</script>
+    
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-tooltip.js"></script>
 </body>

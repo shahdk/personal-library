@@ -260,27 +260,27 @@ function createAddBookModal() {
     locationTrInputTd.appendChild(locationInput);
     //=================================================================================
 
-    //=================================================================================
-    var ratingTr = document.createElement("tr");
-    personalDetailTable.appendChild(ratingTr);
-    //=================================================================================
-
-    //=================================================================================
-    var ratingTrLabelTd = document.createElement("td");
-    setLabelTdAttributes(ratingTrLabelTd, "Rating: ");
-    ratingTr.appendChild(ratingTrLabelTd);
-    //=================================================================================
-
-    //=================================================================================
-    var ratingTrInputTd = document.createElement("td");
-    ratingTr.appendChild(ratingTrInputTd);
-    //=================================================================================
-
-    //=================================================================================
-    var ratingDiv = document.createElement("div");
-    ratingDiv.className = "rating";
-    ratingTrInputTd.appendChild(ratingDiv);
-    //=================================================================================
+//    //=================================================================================
+//    var ratingTr = document.createElement("tr");
+//    personalDetailTable.appendChild(ratingTr);
+//    //=================================================================================
+//
+//    //=================================================================================
+//    var ratingTrLabelTd = document.createElement("td");
+//    setLabelTdAttributes(ratingTrLabelTd, "Rating: ");
+//    ratingTr.appendChild(ratingTrLabelTd);
+//    //=================================================================================
+//
+//    //=================================================================================
+//    var ratingTrInputTd = document.createElement("td");
+//    ratingTr.appendChild(ratingTrInputTd);
+//    //=================================================================================
+//
+//    //=================================================================================
+//    var ratingDiv = document.createElement("div");
+//    ratingDiv.className = "rating";
+//    ratingTrInputTd.appendChild(ratingDiv);
+//    //=================================================================================
 
     //=================================================================================
     var linkBoxDiv = document.createElement("div");
