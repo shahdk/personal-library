@@ -144,4 +144,6 @@ function createBookDivs(url_array, isbn_array, titles_array) {
 
         containerDiv.appendChild(bookDiv);
     }
+    
+    createBookDetailModal();
 }

@@ -24,16 +24,18 @@ function createBookDetailModal() {
                 var coverImage = responseArr[i + 8];
                 var book = {};
 
-                coverImage = coverImage.replace("[", "");
-                coverImage = coverImage.replace("]", "");
+                if (coverImage) {
+                    coverImage = coverImage.replace("[", "");
+                    coverImage = coverImage.replace("]", "");
 
-                var find = '"';
-                var re = new RegExp(find, "g");
-                coverImage = coverImage.replace(re, "");
+                    var find = '"';
+                    var re = new RegExp(find, "g");
+                    coverImage = coverImage.replace(re, "");
 
-                find = "#";
-                re = new RegExp(find, "g");
-                coverImage = coverImage.replace(re, "&");
+                    find = "#";
+                    re = new RegExp(find, "g");
+                    coverImage = coverImage.replace(re, "&");
+                }
 
                 if (title && title.length > 0) {
                     book['isbn'] = isbn;
@@ -58,8 +60,6 @@ function createBookDetailModal() {
 }
 
 function displayBookDetailModal(booksList) {
-
-
 
     for (var i = 0; i < booksList.length; i++) {
         var book = booksList[i];
@@ -159,13 +159,8 @@ function displayBookDetailModal(booksList) {
 
         //=================================================================================
         var isbnTrInputTd = document.createElement("td");
+        setTdAttributesForDetailModal(isbnTrInputTd, "isbnInput_" + isbn, isbn);
         isbnTr.appendChild(isbnTrInputTd);
-        //=================================================================================
-
-        //=================================================================================
-        var isbnInput = document.createElement("input");
-        setInputAttributesForDetailModal(isbnInput, "isbnInput_" + isbn, isbn);
-        isbnTrInputTd.appendChild(isbnInput);
         //=================================================================================
 
         //=================================================================================
@@ -181,13 +176,8 @@ function displayBookDetailModal(booksList) {
 
         //=================================================================================
         var publishDateTrInputTd = document.createElement("td");
+        setTdAttributesForDetailModal(publishDateTrInputTd, "publishedYearInput_" + isbn, publishDate);
         publishDateTr.appendChild(publishDateTrInputTd);
-        //=================================================================================
-
-        //=================================================================================
-        var publishDateInput = document.createElement("input");
-        setInputAttributesForDetailModal(publishDateInput, "publishedYearInput_" + isbn, publishDate);
-        publishDateTrInputTd.appendChild(publishDateInput);
         //=================================================================================
 
         //=================================================================================
@@ -203,13 +193,8 @@ function displayBookDetailModal(booksList) {
 
         //=================================================================================
         var totalPagesTrInputTd = document.createElement("td");
+        setTdAttributesForDetailModal(totalPagesTrInputTd, "totalPagesInput_" + isbn, totalPages);
         totalPagesTr.appendChild(totalPagesTrInputTd);
-        //=================================================================================
-
-        //=================================================================================
-        var totalPagesInput = document.createElement("input");
-        setInputAttributesForDetailModal(totalPagesInput, "totalPagesInput_" + isbn, totalPages);
-        totalPagesTrInputTd.appendChild(totalPagesInput);
         //=================================================================================
 
         //=================================================================================
@@ -292,6 +277,11 @@ function displayBookDetailModal(booksList) {
 
         //=================================================================================
         var progressBarTextP = document.createElement("p");
+
+        var progressBarTextIdAttr = document.createAttribute("id");
+        progressBarTextIdAttr.value = "progress-bar-text-" + isbn;
+        progressBarTextP.setAttributeNode(progressBarTextIdAttr);
+
         progressBarTextP.innerHTML = bookmark + " pages read";
         progressBarDiv.appendChild(progressBarTextP);
         //=================================================================================
@@ -439,8 +429,15 @@ function setProgressBarAttributesForDetailModal(progressBarDiv, isbn, val) {
         blue = 1 + 4 * (0 - percent + 0.75 * spread) / spread;
     }
 
+    
+    var d = '#FFF';
+    var a = 1 - (0.299 * red + 0.587 * green + 0.114 * blue);
+    if (a < 0.5){
+        d = '#000';
+    }
+
     var widthAttr = document.createAttribute("style");
-    widthAttr.value = "width: " + val + "%; background-color:rgb(" + Math.floor(red * 255) + "," + Math.floor(green * 255) + "," + Math.floor(blue * 255) + "); color:#000;";
+    widthAttr.value = "width: " + val + "%; background-color:rgb(" + Math.floor(red * 255) + "," + Math.floor(green * 255) + "," + Math.floor(blue * 255) + "); color:#000; color:"+d+";";
     progressBarDiv.setAttributeNode(widthAttr);
 }
 
@@ -486,7 +483,46 @@ function setDeleteButtonAttributesForDetailModal(buttonElement, isbn) {
     buttonElement.setAttributeNode(buttonOnClickAttr);
 }
 
-function saveChanges(isbn) {}
+function setTdAttributesForDetailModal(tdElement, id, innerText) {
+    tdElement.innerHTML = innerText;
+
+    var inputIdAttr = document.createAttribute("id");
+    inputIdAttr.value = id;
+    tdElement.setAttributeNode(inputIdAttr);
+}
+
+function saveChanges(isbn) {
+    var saveRequest = new XMLHttpRequest();
+
+    var bookmarkElement = document.getElementById("bookmarkPageInput_" + isbn);
+    var locationElement = document.getElementById("locationInput_" + isbn);
+    var progressBarElement = document.getElementById("progress-bar-" + isbn);
+    var totalPagesElement = document.getElementById("totalPagesInput_" + isbn);
+    var progressBarTextElement = document.getElementById("progress-bar-text-" + isbn);
+
+    var url = "php/updateBook.php?isbn=" + isbn +
+        "&bookmark=" + bookmarkElement.value +
+        "&location=" + locationElement.value;
+
+    saveRequest.open("GET", url, true);
+
+    saveRequest.onreadystatechange = function () {
+        if (saveRequest.readyState == 4 && saveRequest.status == 200) {
+            var response = saveRequest.responseText;
+            if (response != 0) {
+                alert('Could not delete book');
+            } else {
+                console.log(bookmarkElement.value);
+                console.log("totalPagesInput_" + isbn);
+                progressBarTextElement.innerHTML = bookmarkElement.value + " pages read";
+                setProgressBarAttributesForDetailModal(progressBarElement, isbn, (bookmarkElement.value / totalPagesElement.innerHTML));
+                alert('Changes successfully saved!');
+            }
+        }
+    }
+
+    saveRequest.send();
+}
 
 function deleteBook(isbn) {
     var deleteRequest = new XMLHttpRequest();
@@ -499,7 +535,7 @@ function deleteBook(isbn) {
         if (deleteRequest.readyState == 4 && deleteRequest.status == 200) {
             var response = deleteRequest.responseText;
 
-            if (response == 5){
+            if (response == 5) {
                 displayBooks();
             } else {
                 alert('Could not delete book');
