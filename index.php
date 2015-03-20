@@ -18,6 +18,9 @@
     <link href="css/styles.css" rel="stylesheet">
     <link href="css/thumbnail-gallery.css" rel="stylesheet">
     <link href='font-awesome/fertigopro/stylesheet.css' rel='stylesheet' type='text/css'>
+    <script src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/isbn.js"></script>
+    <script type="text/javascript" src="js/isbn-groups.js"></script>
 </head>
 
 <body>
@@ -104,14 +107,16 @@
     <!-- Page Content -->
     <div class="container">
 
-        <div class="row">
+        <div class="row" id="displayDiv">
 
             <p></p>
             <hr />
-
-            <?php include 'php/getfiles.php'; ?>
-            <?php include 'php/createmodal.php'; ?>
-            <?php include 'php/create-add-book-modal.php'; ?>
+            
+            <script src="js/displayBooks.js"></script>
+            <script src="js/createAddBookModal.js"></script>
+            <script type="text/javascript">
+                createAddBookModal();
+            </script>
 
         </div>
 
@@ -137,7 +142,7 @@
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    
     <script src="js/jquery.raty.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
