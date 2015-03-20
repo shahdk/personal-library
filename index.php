@@ -104,7 +104,6 @@
         </div>
     </div>
 
-    <!-- Page Content -->
     <div class="container">
 
         <div class="row" id="displayDiv">
@@ -114,8 +113,10 @@
             
             <script src="js/displayBooks.js"></script>
             <script src="js/createAddBookModal.js"></script>
+            <script src="js/createBookDetailModal.js"></script>
             <script type="text/javascript">
                 createAddBookModal();
+                createBookDetailModal();
             </script>
 
         </div>
@@ -125,29 +126,22 @@
             <div class="bottom-bar"> </div>
             </p>
         </div>
-        <!-- End Modal -->
 
         <hr />
 
-        <!-- Footer -->
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Dharmin Shah 2014</p>
+                    <p>Copyright &copy; Dharmin Shah 2015</p>
                 </div>
             </div>
         </footer>
 
     </div>
-    <!-- /.container -->
-
-    <!-- jQuery -->
-    
     <script src="js/jquery.raty.js"></script>
-    <!-- Bootstrap Core JavaScript -->
+    <script type="text/javascript">$('.rating').raty();</script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-tooltip.js"></script>
-    <script src="js/custom.js"></script>
 </body>
 
 </html>

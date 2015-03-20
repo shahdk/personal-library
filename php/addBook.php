@@ -23,8 +23,13 @@
         $redisClient->hSet("book:".$bookISBN, 'bookmark', $bookmark);
         $redisClient->hSet("book:".$bookISBN, 'location', $location);
         $redisClient->hSet("book:".$bookISBN, 'rating', $rating);
+        $redisClient->hSet("book:".$bookISBN, 'coverImage', $url);
         
         $redisClient->zAdd('spine', $bookISBN, $url);
+        $redisClient->zAdd('bookTitles', $bookISBN, $bookTitle);
+        $redisClient->zAdd('bookAuthors', $bookISBN, $authorName);
+        $redisClient->zAdd('bookPubDates', $bookISBN, $publishDate);
+        
         
     }
 

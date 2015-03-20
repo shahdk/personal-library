@@ -327,10 +327,6 @@ function setAddBookModalDivAttributes(addBookModalDiv) {
 
 function setMyModalDivAttributes(myModalDiv) {
     myModalDiv.className = "popup-modal modal-dialog modal-vertical-centered";
-
-    var myModalIdAttr = document.createAttribute("id");
-    myModalIdAttr.value = "myModal";
-    myModalDiv.setAttributeNode(myModalIdAttr);
 }
 
 function setModalWrapperDivAttributes(modalWrapperDiv) {
@@ -396,14 +392,20 @@ function searchISBN() {
         isbn = isbn.asIsbn13();
         var googleURL = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn;
         $.getJSON(googleURL, function (data) {
-            var str = JSON.stringify(data, undefined, 4);
-
-            document.getElementById("addBookTitleInput").value = data.items[0].volumeInfo.title;
-            document.getElementById("addAuthorNameInput").value = data.items[0].volumeInfo.authors.toString();
-            document.getElementById("addPublishedYearInput").value = data.items[0].volumeInfo.publishedDate;
-            document.getElementById("addTotalPagesInput").value = data.items[0].volumeInfo.pageCount;
-
-            coverURL = data.items[0].volumeInfo.imageLinks.thumbnail;
+            
+            if(data.items){
+                var str = JSON.stringify(data, undefined, 4);
+                document.getElementById("addBookTitleInput").value = data.items[0].volumeInfo.title;
+                document.getElementById("addAuthorNameInput").value = data.items[0].volumeInfo.authors.toString();
+                document.getElementById("addPublishedYearInput").value = data.items[0].volumeInfo.publishedDate;
+                document.getElementById("addTotalPagesInput").value = data.items[0].volumeInfo.pageCount;
+                coverURL = data.items[0].volumeInfo.imageLinks.thumbnail;
+            } else {
+                document.getElementById("addBookTitleInput").value = "Sorry book info unavailable";
+                document.getElementById("addAuthorNameInput").value = "Sorry book info unavailable";
+                document.getElementById("addPublishedYearInput").value = "Sorry book info unavailable";
+                document.getElementById("addTotalPagesInput").value = "Sorry book info unavailable";
+            }
         });
     } else {
         document.getElementById("addBookTitleInput").value = "";
@@ -418,7 +420,10 @@ function addBook() {
     var httpRequest2 = new XMLHttpRequest();
     var url = "php/addBook.php";
 
-    var bookISBN = document.getElementById("addIsbnInput").value;
+    var isbnVal = (document.getElementById("addIsbnInput").value).replace("-", "");
+    var isbn = ISBN.parse(isbnVal);
+    var bookISBN = isbn.asIsbn13();
+    
     var bookTitle = document.getElementById("addBookTitleInput").value;
     var authorName = document.getElementById("addAuthorNameInput").value;
     var publishDate = document.getElementById("addPublishedYearInput").value;
@@ -427,6 +432,10 @@ function addBook() {
     var location = document.getElementById("addLocationInput").value;
     var rating = 0;
 
+    if (!validInputs(bookISBN, bookTitle)) {
+        return;
+    }
+    
     var find = "&";
     var re = new RegExp(find, "g");
     coverURL = coverURL.replace(re, "#");
@@ -444,16 +453,22 @@ function addBook() {
             document.getElementById("addPublishedYearInput").value = "";
             document.getElementById("addTotalPagesInput").value = "";
     
-            var bookDivElement = document.getElementById("book-div");
-            if (bookDivElement) {
-                while (bookDivElement.firstChild) {
-                    bookDivElement.removeChild(bookDivElement.firstChild);
-                }
-            }
-    
             displayBooks();
         }
     }
 
     httpRequest2.send(vars);
+}
+
+function validInputs(isbn, title) {
+    
+    if (isbn.length == 0 || title.length == 0 || coverURL.length == 0){
+        return false;
+    }
+    
+    if (title == "Sorry book info unavailable") {
+        return false;
+    }
+    
+    return true;
 }
