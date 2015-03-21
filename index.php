@@ -22,6 +22,7 @@
     <script type="text/javascript" src="js/isbn.js"></script>
     <script type="text/javascript" src="js/isbn-groups.js"></script>
     <script src="js/jquery.raty.js"></script>
+    <script src="js/searchBook.js"></script>
 </head>
 
 <body>
@@ -37,7 +38,7 @@
                 <div class="navbar-text">My Library</div>
                 <form class="navbar-form" role="search">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                        <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term" oninput="searchBook();">
                         <div class="input-group-btn">
                             <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i>
                             </button>
@@ -111,7 +112,7 @@
 
             <p></p>
             <hr />
-            
+            <?php include 'php/initializeSpine.php';?>
             <script src="js/displayBooks.js"></script>
             <script src="js/createAddBookModal.js"></script>
             <script src="js/createBookDetailModal.js"></script>

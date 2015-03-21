@@ -512,8 +512,6 @@ function saveChanges(isbn) {
             if (response != 0) {
                 alert('Could not delete book');
             } else {
-                console.log(bookmarkElement.value);
-                console.log("totalPagesInput_" + isbn);
                 progressBarTextElement.innerHTML = bookmarkElement.value + " pages read";
                 setProgressBarAttributesForDetailModal(progressBarElement, isbn, (bookmarkElement.value / totalPagesElement.innerHTML));
                 alert('Changes successfully saved!');

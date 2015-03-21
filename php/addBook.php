@@ -26,9 +26,14 @@
         $redisClient->hSet("book:".$bookISBN, 'coverImage', $url);
         
         $redisClient->zAdd('spine', $bookISBN, $url);
-        $redisClient->zAdd('bookTitles', $bookISBN, $bookTitle);
-        $redisClient->zAdd('bookAuthors', $bookISBN, $authorName);
-        $redisClient->zAdd('bookPubDates', $bookISBN, $publishDate);
+        $redisClient->zAdd('coverImages', $bookISBN, $url);
+        $redisClient->zAdd('bookTitles', $bookISBN, strtolower($bookTitle));
+        $redisClient->zAdd('bookAuthors', $bookISBN, strtolower($authorName));
+        $redisClient->zAdd('bookPubDates', $bookISBN, strtolower($publishDate));
+        
+        
+        $searchItem = $bookISBN." ; ".$url." ; ".strtolower($bookTitle)." ; ".strtolower($authorName)." ; ".strtolower($publishDate);
+        $redisClient->sAdd('search', $searchItem);
         
         
     }
