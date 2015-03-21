@@ -3497,7 +3497,7 @@ input[type="button"].btn-block {
     margin: 2px 0 0;
     font-size: 14px;
     list-style: none;
-    background-color: #fff;
+    background-color: #222;
     border: 1px solid #ccc;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 4px;
@@ -3524,7 +3524,7 @@ input[type="button"].btn-block {
     clear: both;
     font-weight: normal;
     line-height: 1.428571429;
-    color: #333;
+    color: #FFF;
     white-space: nowrap
 }
 
@@ -4810,7 +4810,7 @@ navbar-nav.pull-right>li>.dropdown-menu,
 
 .navbar-inverse .navbar-nav>li>a:hover,
 .navbar-inverse .navbar-nav>li>a:focus {
-    color: #dcbfc3;
+    color: #e28f8f;
     background-color: transparent
 }
 

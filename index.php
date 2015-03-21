@@ -9,11 +9,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Thumbnail Gallery - Start Bootstrap Template</title>
+    <title>Personal Library Catalog</title>
+    
+    <link rel="icon" type="image/png" href="images/pinwheel.png">
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="css/styles.css" rel="stylesheet">
     <link href="css/thumbnail-gallery.css" rel="stylesheet">
@@ -23,6 +24,7 @@
     <script type="text/javascript" src="js/isbn-groups.js"></script>
     <script src="js/jquery.raty.js"></script>
     <script src="js/searchBook.js"></script>
+    <script src="js/sortBooks.js"></script>
 </head>
 
 <body>
@@ -35,7 +37,7 @@
                 <img src="images/pinwheel.png" alt="#" />
             </div>
             <div class="col-sm-3 col-md-3 pull-left">
-                <div class="navbar-text">My Library</div>
+                <div class="navbar-text">My Library Catalog</div>
                 <form class="navbar-form" role="search">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term" oninput="searchBook();">
@@ -51,34 +53,22 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sort By <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Name A-Z</a>
+                        <li><a href="#" onclick="sortBy('titleAsc');" style="color:#e28f8f;">Book Title A-Z</a>
                         </li>
                         <li role="presentation" class="divider"></li>
-                        <li><a href="#">Name Z-A</a>
+                        <li><a href="#" onclick="sortBy('titleDesc');">Book Title Z-A</a>
                         </li>
                         <li role="presentation" class="divider"></li>
-                        <li><a href="#">Author A-Z</a>
+                        <li><a href="#" onclick="sortBy('authorAsc');">Author A-Z</a>
                         </li>
                         <li role="presentation" class="divider"></li>
-                        <li><a href="#">Author Z-A</a>
+                        <li><a href="#" onclick="sortBy('authorDesc');">Author Z-A</a>
                         </li>
                         <li role="presentation" class="divider"></li>
-                        <li><a href="#">Date Added (Latest first)</a>
+                        <li><a href="#" onclick="sortBy('isbnAsc');">ISBN Number 0-9</a>
                         </li>
                         <li role="presentation" class="divider"></li>
-                        <li><a href="#">Date Added (Earliest first)</a>
-                        </li>
-                        <li role="presentation" class="divider"></li>
-                        <li><a href="#">Date Viewed (Earliest first)</a>
-                        </li>
-                        <li role="presentation" class="divider"></li>
-                        <li><a href="#">Date Viewed (Earliest first)</a>
-                        </li>
-                        <li role="presentation" class="divider"></li>
-                        <li><a href="#">Rating (1-5)</a>
-                        </li>
-                        <li role="presentation" class="divider"></li>
-                        <li><a href="#">Rating (5-1)</a>
+                        <li><a href="#" onclick="sortBy('isbnDesc');">ISBN Number 9-0</a>
                         </li>
                     </ul>
                 </li>

@@ -11,7 +11,7 @@
         $it = NULL;
         while($arr_matches = $redisClient->zscan('coverImages', $it)) {
             foreach($arr_matches as $str_mem => $f_score) {
-                $redisClient->zAdd('spine', $f_score, $str_mem);
+                $redisClient->rPush('spine', $f_score."|".$str_mem);
             }
         }
         echo "".$searchTerm."";
@@ -24,7 +24,7 @@
                 $url = trim($details[1]);
                 $isbn = trim($details[0]);
                 
-                $redisClient->zAdd('spine', $isbn, $url);
+                $redisClient->rPush('spine', $isbn."|".$url);
             }
         }
     }

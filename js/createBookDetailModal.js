@@ -533,7 +533,7 @@ function deleteBook(isbn) {
         if (deleteRequest.readyState == 4 && deleteRequest.status == 200) {
             var response = deleteRequest.responseText;
 
-            if (response == 5) {
+            if (response == 6) {
                 displayBooks();
             } else {
                 alert('Could not delete book');

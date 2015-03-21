@@ -9,7 +9,6 @@ function displayBooks() {
         }
     }
 
-
     var httpRequest = new XMLHttpRequest();
     var url = "php/getBookISBNList.php";
     var url_array = {};
@@ -20,8 +19,9 @@ function displayBooks() {
     httpRequest.onreadystatechange = function () {
         if (httpRequest.readyState == 4 && httpRequest.status == 200) {
             var responseArr = httpRequest.responseText;
+            
             responseArr = responseArr.split(",");
-
+            
             for (var i = 0; i < responseArr.length; i += 2) {
                 var isbn = responseArr[i];
                 var response = responseArr[i + 1];

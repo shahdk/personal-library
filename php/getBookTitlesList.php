@@ -1,7 +1,4 @@
 <?php
-
-
-    
     $redisClient = new Redis();
     $redisClient->connect( '127.0.0.1');
     

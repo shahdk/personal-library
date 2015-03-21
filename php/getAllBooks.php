@@ -2,7 +2,7 @@
     $redisClient = new Redis();
     $redisClient->connect( '127.0.0.1');
     
-    $spineList = $redisClient->zRange('spine', 0, -1, true);
+    $spineList = $redisClient->zRange('coverImages', 0, -1, true);
 
     $books = [];
     foreach ($spineList as $coverURL => $bookISBN) {

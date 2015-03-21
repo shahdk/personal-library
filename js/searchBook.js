@@ -4,7 +4,7 @@ function searchBook() {
 
     var searchRequest = new XMLHttpRequest();
 
-    var url = "php/searchFilter.php?search-term=" + searchBar.value;
+    var url = "php/searchBook.php?search-term=" + searchBar.value;
 
     searchRequest.open("GET", url, true);
 
