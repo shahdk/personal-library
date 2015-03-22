@@ -75,19 +75,9 @@
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Currently Reading<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Book 1</a>
-                        </li>
-                        <li role="presentation" class="divider"></li>
-                        <li><a href="#">Book 2</a>
-                        </li>
-                        <li role="presentation" class="divider"></li>
-                        <li><a href="#">Book 3</a>
-                        </li>
-                        <li role="presentation" class="divider"></li>
-                        <li><a href="#">Book 4</a>
-                        </li>
-
+                    <ul class="dropdown-menu" id="current-books">
+                        <script src="js/displayCurrentBooks.js"></script>
+                        <script>displayCurrentBooks();</script>
                     </ul>
                 </li>
                 <li class="navbar-btn" data-toggle="modal" data-target="#addBookModal">Add Book</li>

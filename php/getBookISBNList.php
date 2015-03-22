@@ -7,8 +7,6 @@
     $arr_mems = $redisClient->lRange('spine', 0, -1);
     foreach($arr_mems as $str_mem) {
 
-        echo "Spine: ".$str_mem."";
-
         $details = explode("|", $str_mem);
 
         $url = trim($details[1]);

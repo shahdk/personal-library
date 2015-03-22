@@ -11,7 +11,6 @@ function searchBook() {
     searchRequest.onreadystatechange = function () {
         if (searchRequest.readyState == 4 && searchRequest.status == 200) {
             var response = searchRequest.responseText;
-//            console.log(response);
             displayBooks();
         }
     }

@@ -12,6 +12,15 @@
         $result += $redisClient->hSet("book:".$isbn, 'location', $location);
     }
 
+    $currentBooksList = $redisClient->zRangeByScore('currentBooks', $isbn, $isbn);
+    $title = $redisClient->hGet("book:".$isbn, "title");
+    $totalPage = $redisClient->hGet("book:".$isbn, "totalPages");
+    if ($bookmark > 0 && count($currentBooksList)==0){
+        $redisClient->zAdd('currentBooks', $isbn, $title);
+    } else if ($bookmark == $totalPage && count($currentBooksList)==1){
+        $redisClient->zDelete('currentBooks', $title);
+    }
+
     while($arr_mems = $redisClient->sscan('search', $it)) {
         foreach($arr_mems as $str_mem) {
             if (strpos($str_mem, $isbn) !== false){

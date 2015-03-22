@@ -510,10 +510,11 @@ function saveChanges(isbn) {
         if (saveRequest.readyState == 4 && saveRequest.status == 200) {
             var response = saveRequest.responseText;
             if (response != 0) {
-                alert('Could not delete book');
+                alert('Could not save changes');
             } else {
                 progressBarTextElement.innerHTML = bookmarkElement.value + " pages read";
                 setProgressBarAttributesForDetailModal(progressBarElement, isbn, (bookmarkElement.value / totalPagesElement.innerHTML));
+                displayCurrentBooks();
                 alert('Changes successfully saved!');
             }
         }
@@ -535,6 +536,7 @@ function deleteBook(isbn) {
 
             if (response == 6) {
                 displayBooks();
+                displayCurrentBooks();
             } else {
                 alert('Could not delete book');
             }

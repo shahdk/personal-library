@@ -452,7 +452,7 @@ function addBook() {
             document.getElementById("addAuthorNameInput").value = "";
             document.getElementById("addPublishedYearInput").value = "";
             document.getElementById("addTotalPagesInput").value = "";
-    
+            displayCurrentBooks();
             displayBooks();
         }
     }

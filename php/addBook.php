@@ -30,6 +30,10 @@
         $redisClient->zAdd('bookAuthors', $bookISBN, strtolower($authorName));
         $redisClient->zAdd('bookPubDates', $bookISBN, strtolower($publishDate));
         
+        if ($bookmark > 0){
+            $redisClient->zAdd('currentBooks', $bookISBN, $bookTitle);
+        }
+        
         $redisClient->rPush('spine', $bookISBN."|".$url);
         
         $searchItem = $bookISBN." ; ".$url." ; ".strtolower($bookTitle)." ; ".strtolower($authorName)." ; ".strtolower($publishDate)." ; ".strtolower($location);
@@ -43,7 +47,6 @@
         
         $authorSort = strtolower($authorName)." ; ".$bookISBN." ; ".$url." ; ".strtolower($bookTitle)." ; ".strtolower($publishDate)." ; ".strtolower($location);
         $redisClient->sAdd('authorSort', $authorSort);
-        
     }
 
 ?>

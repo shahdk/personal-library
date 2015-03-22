@@ -9,6 +9,13 @@
 
     $result = 0;
     if ($isbn){
+        
+        $currentBooksList = $redisClient->zRangeByScore('currentBooks', $isbn, $isbn);
+
+        if (count($currentBooksList)==1){
+            $redisClient->zDelete('currentBooks', $currentBooksList[0]);
+        }
+        
         $result += $redisClient->lRem('spine', $isbn."|".$url, 0);
         $result += $redisClient->zRemRangeByScore('bookAuthors', $isbn, $isbn);
         $result += $redisClient->zRemRangeByScore('bookPubDates', $isbn, $isbn);
