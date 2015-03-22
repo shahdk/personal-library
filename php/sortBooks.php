@@ -1,6 +1,7 @@
 <?php
 
     $sortTerm = $_GET['sort-term'];
+    $isWishlist = $_GET['isWishlist'];
     $redisClient = new Redis();
     $redisClient->connect( '127.0.0.1');
 
@@ -10,7 +11,6 @@
     $sortBy = 'isbn';
     $sortedArray = [];
 
-    echo "".$sortTerm."";
 
     if ($sortTerm == 'titleAsc') {
         $sortBy = 'title';
@@ -39,11 +39,20 @@
         if ($sortBy=="title" || $sortBy=="author"){
             $url = trim($details[2]);
             $isbn = trim($details[1]);
-            $redisClient->rPush('spine', $isbn."|".$url);
+            $wishlist = $redisClient->hGet("book:".$isbn, "isWishlist");
+        
+            if ($isWishlist == $wishlist){
+                $redisClient->rPush('spine', $isbn."|".$url);
+            }
+            
         } else if ($sortBy=='isbn') {
             $url = trim($details[1]);
             $isbn = trim($details[0]);
-            $redisClient->rPush('spine', $isbn."|".$url);
+            $wishlist = $redisClient->hGet("book:".$isbn, "isWishlist");
+        
+            if ($isWishlist == $wishlist){
+                $redisClient->rPush('spine', $isbn."|".$url);
+            }
         }
     }
 ?>

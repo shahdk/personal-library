@@ -290,13 +290,13 @@ function createAddBookModal() {
 
     //=================================================================================
     var addLibraryButton = document.createElement("button");
-    setAddButtonAttributes(addLibraryButton, "library", "addBook();", "Add to Library");
+    setAddButtonAttributes(addLibraryButton, "library", "addBook(false);", "Add to Library");
     linkBoxDiv.appendChild(addLibraryButton);
     //=================================================================================
 
     //=================================================================================
     var addWishlistButton = document.createElement("button");
-    setAddButtonAttributes(addWishlistButton, "wishlist", "addToWishlist();", "Add to Wishlist");
+    setAddButtonAttributes(addWishlistButton, "wishlist", "addBook(true);", "Add to Wishlist");
     linkBoxDiv.appendChild(addWishlistButton);
     //=================================================================================
 }
@@ -415,7 +415,7 @@ function searchISBN() {
     }
 }
 
-function addBook() {
+function addBook(isWishlist) {
 
     var httpRequest2 = new XMLHttpRequest();
     var url = "php/addBook.php";
@@ -440,7 +440,7 @@ function addBook() {
     var re = new RegExp(find, "g");
     coverURL = coverURL.replace(re, "#");
 
-    var vars = "bookISBN=" + bookISBN + "&bookTitle=" + bookTitle + "&authorName=" + authorName + "&publishDate=" + publishDate + "&totalPages=" + totalPages + "&bookmark=" + bookmark + "&location=" + location + "&rating=" + rating + "&url=" + coverURL;
+    var vars = "bookISBN=" + bookISBN + "&bookTitle=" + bookTitle + "&authorName=" + authorName + "&publishDate=" + publishDate + "&totalPages=" + totalPages + "&bookmark=" + bookmark + "&location=" + location + "&rating=" + rating + "&url=" + coverURL + "&isWishlist=" + isWishlist;
 
     httpRequest2.open("POST", url, true);
     httpRequest2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -453,7 +453,7 @@ function addBook() {
             document.getElementById("addPublishedYearInput").value = "";
             document.getElementById("addTotalPagesInput").value = "";
             displayCurrentBooks();
-            displayBooks();
+            displayBooks($('#wishlistSwitch').bootstrapSwitch('state'));
         }
     }
 

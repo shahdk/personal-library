@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <title>Personal Library Catalog</title>
-    
+
     <link rel="icon" type="image/png" href="images/pinwheel.png">
 
     <!-- Bootstrap Core CSS -->
@@ -19,12 +19,16 @@
     <link href="css/styles.css" rel="stylesheet">
     <link href="css/thumbnail-gallery.css" rel="stylesheet">
     <link href='font-awesome/fertigopro/stylesheet.css' rel='stylesheet' type='text/css'>
+    <link href="css/bootstrap-switch.css" rel="stylesheet" type="text/css" />
+
     <script src="js/jquery.js"></script>
     <script type="text/javascript" src="js/isbn.js"></script>
     <script type="text/javascript" src="js/isbn-groups.js"></script>
+    <script type="text/javascript" src="js/bootstrap-switch.js"></script>
     <script src="js/jquery.raty.js"></script>
     <script src="js/searchBook.js"></script>
     <script src="js/sortBooks.js"></script>
+    <script src="js/initializeSpine.js"></script>
 </head>
 
 <body>
@@ -40,7 +44,7 @@
                 <div class="navbar-text">My Library Catalog</div>
                 <form class="navbar-form" role="search">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term" oninput="searchBook();">
+                        <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term" oninput="searchBook($('#wishlistSwitch').bootstrapSwitch('state'));">
                         <div class="input-group-btn">
                             <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i>
                             </button>
@@ -53,22 +57,22 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sort By <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#" onclick="sortBy('titleAsc');" style="color:#e28f8f;">Book Title A-Z</a>
+                        <li><a href="#" id="tAsc" onclick="sortBy('titleAsc', $('#wishlistSwitch').bootstrapSwitch('state'));" style="color:#e28f8f;">Book Title A-Z</a>
                         </li>
                         <li role="presentation" class="divider"></li>
-                        <li><a href="#" onclick="sortBy('titleDesc');">Book Title Z-A</a>
+                        <li><a href="#" id="tDesc" onclick="sortBy('titleDesc', $('#wishlistSwitch').bootstrapSwitch('state'));">Book Title Z-A</a>
                         </li>
                         <li role="presentation" class="divider"></li>
-                        <li><a href="#" onclick="sortBy('authorAsc');">Author A-Z</a>
+                        <li><a href="#" id="aAsc" onclick="sortBy('authorAsc', $('#wishlistSwitch').bootstrapSwitch('state'));">Author A-Z</a>
                         </li>
                         <li role="presentation" class="divider"></li>
-                        <li><a href="#" onclick="sortBy('authorDesc');">Author Z-A</a>
+                        <li><a href="#" id="aDesc" onclick="sortBy('authorDesc', $('#wishlistSwitch').bootstrapSwitch('state'));">Author Z-A</a>
                         </li>
                         <li role="presentation" class="divider"></li>
-                        <li><a href="#" onclick="sortBy('isbnAsc');">ISBN Number 0-9</a>
+                        <li><a href="#" id="iAsc" onclick="sortBy('isbnAsc', $('#wishlistSwitch').bootstrapSwitch('state'));">ISBN Number 0-9</a>
                         </li>
                         <li role="presentation" class="divider"></li>
-                        <li><a href="#" onclick="sortBy('isbnDesc');">ISBN Number 9-0</a>
+                        <li><a href="#" id="iDesc" onclick="sortBy('isbnDesc', $('#wishlistSwitch').bootstrapSwitch('state'));">ISBN Number 9-0</a>
                         </li>
                     </ul>
                 </li>
@@ -77,11 +81,23 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Currently Reading<b class="caret"></b></a>
                     <ul class="dropdown-menu" id="current-books">
                         <script src="js/displayCurrentBooks.js"></script>
-                        <script>displayCurrentBooks();</script>
+                        <script>
+                            displayCurrentBooks();
+                        </script>
                     </ul>
                 </li>
                 <li class="navbar-btn" data-toggle="modal" data-target="#addBookModal">Add Book</li>
-                <li class="navbar-btn">Wish List</li>
+
+                <li class="switch-btn">
+                    <input id="wishlistSwitch" type="checkbox" data-off-text="Library" data-on-text="Wishlist" checked="false" class="switch-box">
+                </li>
+                <script type="text/javascript">
+                    $('.switch-box').bootstrapSwitch('state', false);
+                    $('#wishlistSwitch').on('switchChange.bootstrapSwitch', function () {
+                        initializeSpine();
+                        displayBooks($("#wishlistSwitch").bootstrapSwitch('state'));
+                    });
+                </script>
             </ul>
         </div>
     </div>
@@ -106,7 +122,7 @@
 
         <div class="bottom-bar-wrapper">
             <p>
-            <div class="bottom-bar"> </div>
+                <div class="bottom-bar"> </div>
             </p>
         </div>
 
@@ -121,7 +137,7 @@
         </footer>
 
     </div>
-    
+
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-tooltip.js"></script>
 </body>

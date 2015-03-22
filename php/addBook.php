@@ -1,6 +1,8 @@
 <?php
     if(isset($_POST["bookISBN"])) {
         
+        $isWishlist = $_POST["isWishlist"];
+        
         $bookISBN = $_POST["bookISBN"];
         $bookTitle = $_POST["bookTitle"];
         $authorName = $_POST["authorName"];
@@ -24,6 +26,7 @@
         $redisClient->hSet("book:".$bookISBN, 'location', $location);
         $redisClient->hSet("book:".$bookISBN, 'rating', $rating);
         $redisClient->hSet("book:".$bookISBN, 'coverImage', $url);
+        $redisClient->hSet("book:".$bookISBN, 'isWishlist', $isWishlist);
         
         $redisClient->zAdd('coverImages', $bookISBN, $url);
         $redisClient->zAdd('bookTitles', $bookISBN, strtolower($bookTitle));

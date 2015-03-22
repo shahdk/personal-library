@@ -1,16 +1,15 @@
-document.onload = displayBooks();
+document.onload = displayBooks(false);
 
-function displayBooks() {
-
+function displayBooks(isWishlist) {
     var bookDivElement = document.getElementById("book-div");
     if (bookDivElement) {
         while (bookDivElement.firstChild) {
             bookDivElement.removeChild(bookDivElement.firstChild);
         }
     }
-
+    
     var httpRequest = new XMLHttpRequest();
-    var url = "php/getBookISBNList.php";
+    var url = "php/getBookISBNList.php?isWishlist="+isWishlist;
     var url_array = {};
     var isbn_array = new Array();
 

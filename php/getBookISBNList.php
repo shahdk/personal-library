@@ -4,6 +4,8 @@
 
     $coverImages = [];
 
+    $isWishlist = $_GET["isWishlist"];
+
     $arr_mems = $redisClient->lRange('spine', 0, -1);
     foreach($arr_mems as $str_mem) {
 
@@ -11,13 +13,16 @@
 
         $url = trim($details[1]);
         $isbn = trim($details[0]);
-
-        array_push($coverImages, $isbn);
-        array_push($coverImages, $url);
-
+        
+        
+        $wishlist = $redisClient->hGet("book:".$isbn, "isWishlist");
+        
+        if ($isWishlist == $wishlist){
+            array_push($coverImages, $isbn);
+            array_push($coverImages, $url);
+        }
     }
     
-
     echo "". implode(",", $coverImages) ."";
         
 ?>

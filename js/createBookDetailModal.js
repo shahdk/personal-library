@@ -197,49 +197,51 @@ function displayBookDetailModal(booksList) {
         totalPagesTr.appendChild(totalPagesTrInputTd);
         //=================================================================================
 
-        //=================================================================================
-        var bookmarkTr = document.createElement("tr");
-        bookInfoTable.appendChild(bookmarkTr);
-        //=================================================================================
+        if (!$('#wishlistSwitch').bootstrapSwitch('state')) {
+            //=================================================================================
+            var bookmarkTr = document.createElement("tr");
+            bookInfoTable.appendChild(bookmarkTr);
+            //=================================================================================
 
-        //=================================================================================
-        var bookmarkTrLabelTd = document.createElement("td");
-        setLabelTdAttributesForDetailModal(bookmarkTrLabelTd, "Bookmarked Page: ");
-        bookmarkTr.appendChild(bookmarkTrLabelTd);
-        //=================================================================================
+            //=================================================================================
+            var bookmarkTrLabelTd = document.createElement("td");
+            setLabelTdAttributesForDetailModal(bookmarkTrLabelTd, "Bookmarked Page: ");
+            bookmarkTr.appendChild(bookmarkTrLabelTd);
+            //=================================================================================
 
-        //=================================================================================
-        var bookmarkTrInputTd = document.createElement("td");
-        bookmarkTr.appendChild(bookmarkTrInputTd);
-        //=================================================================================
+            //=================================================================================
+            var bookmarkTrInputTd = document.createElement("td");
+            bookmarkTr.appendChild(bookmarkTrInputTd);
+            //=================================================================================
 
-        //=================================================================================
-        var bookmarkInput = document.createElement("input");
-        setInputAttributesForDetailModal(bookmarkInput, "bookmarkPageInput_" + isbn, bookmark);
-        bookmarkTrInputTd.appendChild(bookmarkInput);
-        //=================================================================================
+            //=================================================================================
+            var bookmarkInput = document.createElement("input");
+            setInputAttributesForDetailModal(bookmarkInput, "bookmarkPageInput_" + isbn, bookmark);
+            bookmarkTrInputTd.appendChild(bookmarkInput);
+            //=================================================================================
 
-        //=================================================================================
-        var locationTr = document.createElement("tr");
-        bookInfoTable.appendChild(locationTr);
-        //=================================================================================
+            //=================================================================================
+            var locationTr = document.createElement("tr");
+            bookInfoTable.appendChild(locationTr);
+            //=================================================================================
 
-        //=================================================================================
-        var locationTrLabelTd = document.createElement("td");
-        setLabelTdAttributesForDetailModal(locationTrLabelTd, "Location: ");
-        locationTr.appendChild(locationTrLabelTd);
-        //=================================================================================
+            //=================================================================================
+            var locationTrLabelTd = document.createElement("td");
+            setLabelTdAttributesForDetailModal(locationTrLabelTd, "Location: ");
+            locationTr.appendChild(locationTrLabelTd);
+            //=================================================================================
 
-        //=================================================================================
-        var locationTrInputTd = document.createElement("td");
-        locationTr.appendChild(locationTrInputTd);
-        //=================================================================================
+            //=================================================================================
+            var locationTrInputTd = document.createElement("td");
+            locationTr.appendChild(locationTrInputTd);
+            //=================================================================================
 
-        //=================================================================================
-        var locationInput = document.createElement("input");
-        setInputAttributesForDetailModal(locationInput, "locationInput_" + isbn, location);
-        locationTrInputTd.appendChild(locationInput);
-        //=================================================================================
+            //=================================================================================
+            var locationInput = document.createElement("input");
+            setInputAttributesForDetailModal(locationInput, "locationInput_" + isbn, location);
+            locationTrInputTd.appendChild(locationInput);
+            //=================================================================================
+        }
 
         //        //=================================================================================
         //        var ratingTr = document.createElement("tr");
@@ -429,21 +431,25 @@ function setProgressBarAttributesForDetailModal(progressBarDiv, isbn, val) {
         blue = 1 + 4 * (0 - percent + 0.75 * spread) / spread;
     }
 
-    
+
     var d = '#FFF';
     var a = 1 - (0.299 * red + 0.587 * green + 0.114 * blue);
-    if (a < 0.5){
+    if (a < 0.5) {
         d = '#000';
     }
 
     var widthAttr = document.createAttribute("style");
-    widthAttr.value = "width: " + val + "%; background-color:rgb(" + Math.floor(red * 255) + "," + Math.floor(green * 255) + "," + Math.floor(blue * 255) + "); color:#000; color:"+d+";";
+    widthAttr.value = "width: " + val + "%; background-color:rgb(" + Math.floor(red * 255) + "," + Math.floor(green * 255) + "," + Math.floor(blue * 255) + "); color:#000; color:" + d + ";";
     progressBarDiv.setAttributeNode(widthAttr);
 }
 
 function setSaveButtonAttributesForDetailModal(buttonElement, isbn) {
     buttonElement.className = "save-flat-btn";
-    buttonElement.innerHTML = "Save Changes";
+    if ($('#wishlistSwitch').bootstrapSwitch('state')) {
+        buttonElement.innerHTML = "Add to Library";
+    } else {
+        buttonElement.innerHTML = "Save Changes";
+    }
 
     var buttonDataDismissAttr = document.createAttribute("data-dismiss");
     buttonDataDismissAttr.value = "modal";
@@ -458,7 +464,7 @@ function setSaveButtonAttributesForDetailModal(buttonElement, isbn) {
     buttonElement.setAttributeNode(buttonNameAttr);
 
     var buttonOnClickAttr = document.createAttribute("onclick");
-    buttonOnClickAttr.value = "saveChanges(" + isbn + ");";
+    buttonOnClickAttr.value = "saveChanges(" + isbn + ", " + $('#wishlistSwitch').bootstrapSwitch('state') + ");";
     buttonElement.setAttributeNode(buttonOnClickAttr);
 }
 
@@ -491,7 +497,7 @@ function setTdAttributesForDetailModal(tdElement, id, innerText) {
     tdElement.setAttributeNode(inputIdAttr);
 }
 
-function saveChanges(isbn) {
+function saveChanges(isbn, isWishlist) {
     var saveRequest = new XMLHttpRequest();
 
     var bookmarkElement = document.getElementById("bookmarkPageInput_" + isbn);
@@ -502,7 +508,8 @@ function saveChanges(isbn) {
 
     var url = "php/updateBook.php?isbn=" + isbn +
         "&bookmark=" + bookmarkElement.value +
-        "&location=" + locationElement.value;
+        "&location=" + locationElement.value +
+        "&isWishlist=" + isWishlist;
 
     saveRequest.open("GET", url, true);
 
@@ -535,7 +542,7 @@ function deleteBook(isbn) {
             var response = deleteRequest.responseText;
 
             if (response == 6) {
-                displayBooks();
+                displayBooks($('#wishlistSwitch').bootstrapSwitch('state'));
                 displayCurrentBooks();
             } else {
                 alert('Could not delete book');

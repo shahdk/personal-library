@@ -21,6 +21,12 @@ body {
     text-decoration: none;
 }
 
+.switch-btn {
+    
+    padding: 0px 2em 0px 2em;
+    text-decoration: none;
+}
+
 .navbar-btn:hover {
     background: #222;
     text-decoration: none;

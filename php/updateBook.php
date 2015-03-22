@@ -5,11 +5,13 @@
     $isbn = $_GET['isbn'];
     $bookmark = $_GET['bookmark'];
     $location = $_GET['location'];
+    $isWishlist = $_GET['isWishlist'];
 
     $result = 0;
     if ($isbn){
         $result += $redisClient->hSet("book:".$isbn, 'bookmark', $bookmark);
         $result += $redisClient->hSet("book:".$isbn, 'location', $location);
+        $result += $redisClient->hSet("book:".$isbn, 'isWishlist', $isWishlist);
     }
 
     $currentBooksList = $redisClient->zRangeByScore('currentBooks', $isbn, $isbn);
