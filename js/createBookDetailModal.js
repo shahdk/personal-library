@@ -197,51 +197,51 @@ function displayBookDetailModal(booksList) {
         totalPagesTr.appendChild(totalPagesTrInputTd);
         //=================================================================================
 
-        if (!$('#wishlistSwitch').bootstrapSwitch('state')) {
-            //=================================================================================
-            var bookmarkTr = document.createElement("tr");
-            bookInfoTable.appendChild(bookmarkTr);
-            //=================================================================================
 
-            //=================================================================================
-            var bookmarkTrLabelTd = document.createElement("td");
-            setLabelTdAttributesForDetailModal(bookmarkTrLabelTd, "Bookmarked Page: ");
-            bookmarkTr.appendChild(bookmarkTrLabelTd);
-            //=================================================================================
+        //=================================================================================
+        var bookmarkTr = document.createElement("tr");
+        bookInfoTable.appendChild(bookmarkTr);
+        //=================================================================================
 
-            //=================================================================================
-            var bookmarkTrInputTd = document.createElement("td");
-            bookmarkTr.appendChild(bookmarkTrInputTd);
-            //=================================================================================
+        //=================================================================================
+        var bookmarkTrLabelTd = document.createElement("td");
+        setLabelTdAttributesForDetailModal(bookmarkTrLabelTd, "Bookmarked Page: ");
+        bookmarkTr.appendChild(bookmarkTrLabelTd);
+        //=================================================================================
 
-            //=================================================================================
-            var bookmarkInput = document.createElement("input");
-            setInputAttributesForDetailModal(bookmarkInput, "bookmarkPageInput_" + isbn, bookmark);
-            bookmarkTrInputTd.appendChild(bookmarkInput);
-            //=================================================================================
+        //=================================================================================
+        var bookmarkTrInputTd = document.createElement("td");
+        bookmarkTr.appendChild(bookmarkTrInputTd);
+        //=================================================================================
 
-            //=================================================================================
-            var locationTr = document.createElement("tr");
-            bookInfoTable.appendChild(locationTr);
-            //=================================================================================
+        //=================================================================================
+        var bookmarkInput = document.createElement("input");
+        setInputAttributesForDetailModal(bookmarkInput, "bookmarkPageInput_" + isbn, bookmark);
+        bookmarkTrInputTd.appendChild(bookmarkInput);
+        //=================================================================================
 
-            //=================================================================================
-            var locationTrLabelTd = document.createElement("td");
-            setLabelTdAttributesForDetailModal(locationTrLabelTd, "Location: ");
-            locationTr.appendChild(locationTrLabelTd);
-            //=================================================================================
+        //=================================================================================
+        var locationTr = document.createElement("tr");
+        bookInfoTable.appendChild(locationTr);
+        //=================================================================================
 
-            //=================================================================================
-            var locationTrInputTd = document.createElement("td");
-            locationTr.appendChild(locationTrInputTd);
-            //=================================================================================
+        //=================================================================================
+        var locationTrLabelTd = document.createElement("td");
+        setLabelTdAttributesForDetailModal(locationTrLabelTd, "Location: ");
+        locationTr.appendChild(locationTrLabelTd);
+        //=================================================================================
 
-            //=================================================================================
-            var locationInput = document.createElement("input");
-            setInputAttributesForDetailModal(locationInput, "locationInput_" + isbn, location);
-            locationTrInputTd.appendChild(locationInput);
-            //=================================================================================
-        }
+        //=================================================================================
+        var locationTrInputTd = document.createElement("td");
+        locationTr.appendChild(locationTrInputTd);
+        //=================================================================================
+
+        //=================================================================================
+        var locationInput = document.createElement("input");
+        setInputAttributesForDetailModal(locationInput, "locationInput_" + isbn, location);
+        locationTrInputTd.appendChild(locationInput);
+        //=================================================================================
+
 
         //        //=================================================================================
         //        var ratingTr = document.createElement("tr");
@@ -371,7 +371,14 @@ function setLabelTdAttributesForDetailModal(labelTd, innerText) {
 }
 
 function setInputAttributesForDetailModal(inputElement, id, value) {
-    inputElement.className = "editableInput";
+    if($("#wishlistSwitch").bootstrapSwitch('state')){
+        inputElement.className = "uneditableInput";
+        inputElement.readOnly = true;
+        console.log('Was here');
+    } else {
+        inputElement.className = "editableInput";
+        inputElement.readOnly = false;
+    }
 
     var inputIdAttr = document.createAttribute("id");
     inputIdAttr.value = id;
