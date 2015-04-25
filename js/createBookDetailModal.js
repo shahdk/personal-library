@@ -371,7 +371,7 @@ function setLabelTdAttributesForDetailModal(labelTd, innerText) {
 }
 
 function setInputAttributesForDetailModal(inputElement, id, value) {
-    if($("#wishlistSwitch").bootstrapSwitch('state')){
+    if ($("#wishlistSwitch").bootstrapSwitch('state')) {
         inputElement.className = "uneditableInput";
         inputElement.readOnly = true;
         console.log('Was here');
@@ -523,14 +523,12 @@ function saveChanges(isbn, isWishlist) {
     saveRequest.onreadystatechange = function () {
         if (saveRequest.readyState == 4 && saveRequest.status == 200) {
             var response = saveRequest.responseText;
-            if (response != 0) {
-                alert('Could not save changes');
-            } else {
-                progressBarTextElement.innerHTML = bookmarkElement.value + " pages read";
-                setProgressBarAttributesForDetailModal(progressBarElement, isbn, (bookmarkElement.value / totalPagesElement.innerHTML));
-                displayCurrentBooks();
-                alert('Changes successfully saved!');
-            }
+
+            progressBarTextElement.innerHTML = bookmarkElement.value + " pages read";
+            setProgressBarAttributesForDetailModal(progressBarElement, isbn, (bookmarkElement.value / totalPagesElement.innerHTML));
+            displayCurrentBooks();
+//            alert('Changes successfully saved!');
+
         }
     }
 
@@ -548,12 +546,9 @@ function deleteBook(isbn) {
         if (deleteRequest.readyState == 4 && deleteRequest.status == 200) {
             var response = deleteRequest.responseText;
 
-            if (response == 6) {
-                displayBooks($('#wishlistSwitch').bootstrapSwitch('state'));
-                displayCurrentBooks();
-            } else {
-                alert('Could not delete book');
-            }
+            displayBooks($('#wishlistSwitch').bootstrapSwitch('state'));
+            displayCurrentBooks();
+
 
         }
     }

@@ -1,17 +1,5 @@
 function displayCurrentBooks(){
-    
-//    <li><a href="#">Book 1</a>
-//    </li>
-//    <li role="presentation" class="divider"></li>
-//    <li><a href="#">Book 2</a>
-//    </li>
-//    <li role="presentation" class="divider"></li>
-//    <li><a href="#">Book 3</a>
-//    </li>
-//    <li role="presentation" class="divider"></li>
-//    <li><a href="#">Book 4</a>
-//    </li>
-    
+        
     var currentBookElement = document.getElementById("current-books");
     if (currentBookElement) {
         while (currentBookElement.firstChild) {

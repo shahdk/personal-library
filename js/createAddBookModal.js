@@ -439,6 +439,10 @@ function addBook(isWishlist) {
     var find = "&";
     var re = new RegExp(find, "g");
     coverURL = coverURL.replace(re, "#");
+    
+    if (bookmark <= 0){
+        bookmark = 200;
+    }
 
     var vars = "bookISBN=" + bookISBN + "&bookTitle=" + bookTitle + "&authorName=" + authorName + "&publishDate=" + publishDate + "&totalPages=" + totalPages + "&bookmark=" + bookmark + "&location=" + location + "&rating=" + rating + "&url=" + coverURL + "&isWishlist=" + isWishlist;
 

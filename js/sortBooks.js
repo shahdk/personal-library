@@ -10,7 +10,8 @@ function sortBy(sortTerm, isWishlist) {
 
     sortRequest.onreadystatechange = function () {
         if (sortRequest.readyState == 4 && sortRequest.status == 200) {
-
+            var response = sortRequest.responseText;
+            console.log(response);
             displayBooks($('#wishlistSwitch').bootstrapSwitch('state'));
         }
     }
